@@ -83,9 +83,69 @@ public class produtosDAO {
         }
         catch(SQLException se)
         {
-            System.err.println("Erro ao listar filmes: " + se.getMessage());
+            System.err.println("Erro ao listar produtos: " + se.getMessage());
         }
         return pro;
     }
+          
+           public static boolean venderprodutos(produtos po) 
+          {
+              try
+              {
+                  conecao con = new conecao();
+                  con.conectar();
+                  
+                   String sql = "UPDATE produtos SET status = 'vendido'  WHERE id =?";
+                   PreparedStatement prod = con.getConexao().prepareStatement(sql);
+                   
+                  
+                   prod.setInt(1, po.getId());
+                   
+                   
+                   int rowsAffected = prod.executeUpdate();
+             System.out.println("atualizado com sucesso");
+            return rowsAffected > 0;
+                   
+              }
+              catch(SQLException e)
+              {
+                   System.out.println("Erro ao atualizar o registro no banco de dados." + e);
+                return false;
+              }
+          }
+           
+           public static List<produtos> listarvendidos()
+           {
+                List<produtos> pro= new ArrayList();
+        try
+        {
+            conecao con = new conecao();
+            con.conectar();
+            
+            String sql ="SELECT id,nome, valor,status FROM  produtos  WHERE status LIKE 'vendido'";
+            
+            PreparedStatement ps = con.getConexao().prepareStatement(sql);
+            ResultSet rs= ps.executeQuery();
+            
+            while(rs.next())
+                    {
+                        produtos po = new produtos();
+                       po.setId(rs.getInt("id"));
+                        po.setNome(rs.getString("nome"));
+                        po.setValor(rs.getInt("valor"));
+                        po.setStatus(rs.getString("status"));
+                        
+                        pro.add(po);
+                    }
+            
+        }
+        catch(SQLException se)
+        {
+            System.err.println("Erro ao listar produtos: " + se.getMessage());
+        }
+        return pro;
+           }
 
-}
+}  
+
+

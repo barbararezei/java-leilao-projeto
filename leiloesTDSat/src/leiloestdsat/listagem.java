@@ -5,6 +5,7 @@
 package leiloestdsat;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,13 +13,16 @@ import javax.swing.table.DefaultTableModel;
  * @author Sufleh
  */
 public class listagem extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form listagem
      */
     public listagem() {
         initComponents();
+       
+        
     }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,10 +64,25 @@ public class listagem extends javax.swing.JFrame {
         jScrollPane2.setViewportView(id_produto_venda);
 
         venderbutton.setText("VENDER");
+        venderbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                venderbuttonActionPerformed(evt);
+            }
+        });
 
         voltarbutton.setText("voltar");
+        voltarbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarbuttonActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("consultar vendas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,6 +138,26 @@ public class listagem extends javax.swing.JFrame {
         tabelaprodutos.setModel(montarTabela());
         jScrollPane1.setViewportView(tabelaprodutos);
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void venderbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venderbuttonActionPerformed
+        // TODO add your handling code here:
+        produtos po = new produtos();
+        po.setId(Integer.parseInt(id_produto_venda.getText()));
+        produtosDAO.venderprodutos(po);
+        JOptionPane.showMessageDialog(null, "atualizado com sucesso!!!!");
+    }//GEN-LAST:event_venderbuttonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        vendidostabela ven = new vendidostabela();
+        ven.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void voltarbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarbuttonActionPerformed
+        // TODO add your handling code here:
+        cadastro cad = new cadastro();
+        cad.setVisible(true);
+    }//GEN-LAST:event_voltarbuttonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -168,7 +168,7 @@ public class cadastro extends javax.swing.JFrame {
           
            else 
            {
-               JOptionPane.showMessageDialog(null,"Erro ao tentar cadastrar produtor ");
+               JOptionPane.showMessageDialog(null,"Erro ao tentar cadastrar produto ");
            }
            pro.desconectar();
        }
