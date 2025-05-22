@@ -87,5 +87,33 @@ public class produtosDAO {
         }
         return pro;
     }
+          
+           public static boolean venderprodutos(produtos po) 
+          {
+              try
+              {
+                  conecao con = new conecao();
+                  con.conectar();
+                  
+                   String sql = "UPDATE produtos SET status = 'vendido'  WHERE id =?";
+                   PreparedStatement prod = con.getConexao().prepareStatement(sql);
+                   
+                  
+                   prod.setInt(1, po.getId());
+                   
+                   
+                   int rowsAffected = prod.executeUpdate();
+             System.out.println("atualizado com sucesso");
+            return rowsAffected > 0;
+                   
+              }
+              catch(SQLException e)
+              {
+                   System.out.println("Erro ao atualizar o registro no banco de dados." + e);
+                return false;
+              }
+          }
 
-}
+}  
+
+

@@ -5,6 +5,7 @@
 package leiloestdsat;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,13 +13,16 @@ import javax.swing.table.DefaultTableModel;
  * @author Sufleh
  */
 public class listagem extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form listagem
      */
     public listagem() {
         initComponents();
+       
+        
     }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +64,11 @@ public class listagem extends javax.swing.JFrame {
         jScrollPane2.setViewportView(id_produto_venda);
 
         venderbutton.setText("VENDER");
+        venderbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                venderbuttonActionPerformed(evt);
+            }
+        });
 
         voltarbutton.setText("voltar");
 
@@ -119,6 +128,14 @@ public class listagem extends javax.swing.JFrame {
         tabelaprodutos.setModel(montarTabela());
         jScrollPane1.setViewportView(tabelaprodutos);
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void venderbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venderbuttonActionPerformed
+        // TODO add your handling code here:
+        produtos po = new produtos();
+        po.setId(Integer.parseInt(id_produto_venda.getText()));
+        produtosDAO.venderprodutos(po);
+        JOptionPane.showMessageDialog(null, "atualizado com sucesso!!!!");
+    }//GEN-LAST:event_venderbuttonActionPerformed
 
     /**
      * @param args the command line arguments
