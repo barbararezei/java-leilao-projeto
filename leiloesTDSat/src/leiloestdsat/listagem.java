@@ -71,8 +71,18 @@ public class listagem extends javax.swing.JFrame {
         });
 
         voltarbutton.setText("voltar");
+        voltarbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarbuttonActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("consultar vendas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,6 +146,18 @@ public class listagem extends javax.swing.JFrame {
         produtosDAO.venderprodutos(po);
         JOptionPane.showMessageDialog(null, "atualizado com sucesso!!!!");
     }//GEN-LAST:event_venderbuttonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        vendidostabela ven = new vendidostabela();
+        ven.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void voltarbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarbuttonActionPerformed
+        // TODO add your handling code here:
+        cadastro cad = new cadastro();
+        cad.setVisible(true);
+    }//GEN-LAST:event_voltarbuttonActionPerformed
 
     /**
      * @param args the command line arguments
